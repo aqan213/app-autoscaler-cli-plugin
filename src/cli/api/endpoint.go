@@ -119,7 +119,7 @@ func getEndpointFromConfig() (*APIEndpoint, error) {
 			return nil, err
 		}
 	} else {
-		content, err := ioutil.ReadFile(configFilePath)
+		content, err := ioutil.ReadFile(filepath.Clean(configFilePath))
 		if err != nil {
 			return nil, err
 		}
@@ -150,3 +150,4 @@ func getDomain(urlstr string) string {
 	return domain
 
 }
+
