@@ -54,7 +54,7 @@ func (command HistoryCommand) Execute([]string) error {
 	fpo = command.StartTime == "" && command.EndTime == ""
 
 	if command.Output != "" {
-		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0666)
+		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0600|0066)
 		if err != nil {
 			return err
 		}
@@ -142,3 +142,4 @@ func RetrieveHistory(cliConnection api.Connection, appName string, startTime, en
 
 	return nil
 }
+

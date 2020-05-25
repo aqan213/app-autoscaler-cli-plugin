@@ -26,7 +26,7 @@ func (command PolicyCommand) Execute([]string) error {
 	)
 
 	if command.Output != "" {
-		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0666)
+		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0600|0066)
 		if err != nil {
 			return err
 		}
@@ -77,3 +77,4 @@ func RetrievePolicy(cliConnection api.Connection, appName string, writer io.Writ
 	}
 	return nil
 }
+

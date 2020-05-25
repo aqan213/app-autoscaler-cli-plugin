@@ -59,7 +59,7 @@ func (command MetricsCommand) Execute([]string) error {
 	fpo = command.StartTime == "" && command.EndTime == ""
 
 	if command.Output != "" {
-		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0666)
+		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0600|0066)
 		if err != nil {
 			return err
 		}
@@ -148,3 +148,4 @@ func RetrieveAggregatedMetrics(cliConnection api.Connection, appName, metricName
 
 	return nil
 }
+

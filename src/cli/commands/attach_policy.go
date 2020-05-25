@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 )
 
 type AttachPolicyCommand struct {
@@ -45,7 +46,7 @@ func CreatePolicy(cliConnection api.Connection, appName string, policyFile strin
 	apihelper := api.NewAPIHelper(endpoint, cfclient, os.Getenv("CF_TRACE"))
 
 	ui.SayMessage(ui.AttachPolicyHint, appName)
-	contents, err := ioutil.ReadFile(policyFile)
+	contents, err := ioutil.ReadFile(filepath.Clean(policyFile))
 	if err != nil {
 		return fmt.Errorf(ui.FailToLoadPolicyFile, policyFile)
 	}
@@ -63,3 +64,4 @@ func CreatePolicy(cliConnection api.Connection, appName string, policyFile strin
 	ui.SayOK()
 	return nil
 }
+

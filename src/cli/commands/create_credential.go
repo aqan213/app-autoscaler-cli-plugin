@@ -36,7 +36,7 @@ func (command CreateCredentialCommand) Execute([]string) error {
 	}
 
 	if command.Output != "" {
-		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0666)
+		writer, err = os.OpenFile(command.Output, os.O_CREATE|os.O_WRONLY, 0600|0066)
 		if err != nil {
 			return err
 		}
@@ -100,3 +100,4 @@ func CreateCredential(cliConnection api.Connection, appName string, username str
 	ui.SayWarningMessage(ui.CreateCredentialWarning, appName)
 	return nil
 }
+
